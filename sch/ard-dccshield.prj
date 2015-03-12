@@ -1,0 +1,6 @@
+schematics ard-dccshield.sch
+output-name ../pcb/ard-dccshield
+skip-m4
+elements-dir ../../footprints
+
+
