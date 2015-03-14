@@ -488,3 +488,7 @@ N 42800 47800 43900 47800 4
 C 60200 55900 1 0 1 gnd-1.sym
 N 60100 56200 60700 56200 4
 C 35200 41400 0 0 0 title-bordered-A1.sym
+T 44700 49400 9 10 1 0 0 0 3
+NOTE:  C2 provides optional HF noise filtering
+It is likely not necessary in 99% of applications, and its value is a guess
+It is included so that there are pads on the PCB, in the event it is needed
