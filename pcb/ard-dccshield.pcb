@@ -1333,7 +1333,7 @@ Element["" "LTV352-1" "U5" "LTV-352T" 920.00mil 1545.00mil 25.00mil -170.00mil 0
 
 	)
 
-Element["" "1210" "R8" "82" 20.7251mm 2010.00mil -59.45mil 4.45mil 3 100 ""]
+Element["" "1210" "R8" "82" 20.7251mm 2010.00mil 2.7559mm -0.9271mm 0 100 ""]
 (
 	Pad[-59.05mil -27.55mil -59.05mil 27.55mil 51.18mil 20.00mil 57.18mil "1" "1" "square"]
 	Pad[59.05mil -27.55mil 59.05mil 27.55mil 51.18mil 20.00mil 57.18mil "2" "2" "square"]
@@ -1985,7 +1985,7 @@ Layer(5 "silk")
 	Text[1865.00mil 130.00mil 2 73 "SDA" "clearline"]
 	Text[2070.00mil 250.00mil 2 77 "SCL" "clearline"]
 	Text[1855.00mil 340.00mil 2 77 "5V" "clearline"]
-	Text[2080.00mil 435.00mil 2 77 "GND" "clearline,selected"]
+	Text[2080.00mil 435.00mil 2 77 "GND" "clearline"]
 	Polygon("clearpoly")
 	(
 		[1320.00mil 1310.00mil] [1365.00mil 1310.00mil] [1365.00mil 1355.00mil] [1320.00mil 1355.00mil] 
