@@ -631,3 +631,5 @@ refdes=R4
 T 52100 58000 5 10 1 1 180 6 1
 value=10k
 }
+T 58600 46800 9 10 1 0 0 0 1
+Passthrough for SPI header
