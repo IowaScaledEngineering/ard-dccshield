@@ -984,7 +984,7 @@ Element["" "MB1-PLCC4" "U2" "unknown" 395.00mil 2160.00mil 99.00mil -221.00mil 0
 (
 	Pad[50.00mil -124.50mil 50.00mil -100.50mil 31.00mil 28.00mil 33.00mil "1" "1" "square"]
 	Pad[50.00mil 100.50mil 50.00mil 124.50mil 31.00mil 24.00mil 33.00mil "2" "2" "square,edge2"]
-	Pad[-50.00mil -124.50mil -50.00mil -100.50mil 31.00mil 0.0000 33.00mil "4" "4" "square"]
+	Pad[-50.00mil -124.50mil -50.00mil -100.50mil 31.00mil 0.5080mm 33.00mil "4" "4" "square"]
 	Pad[-50.00mil 100.50mil -50.00mil 124.50mil 31.00mil 36.00mil 33.00mil "3" "3" "square,edge2"]
 	ElementLine [-98.00mil -147.00mil -98.00mil 147.00mil 10.00mil]
 	ElementLine [-98.00mil 147.00mil 98.00mil 147.00mil 10.00mil]
