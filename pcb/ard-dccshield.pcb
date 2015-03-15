@@ -1284,7 +1284,7 @@ Element["" "0805" "R9" "330" 1145.00mil 1535.00mil 120.98mil 31.50mil 2 100 ""]
 
 	)
 
-Element["" "JUMPER4-SMT" "J8" "unknown" 49.1710mm 260.00mil 2.1589mm 105.00mil 0 100 ""]
+Element["" "JUMPER4-SMT" "J8" "unknown" 49.1710mm 260.00mil -1.3971mm 215.00mil 0 100 ""]
 (
 	Pad[37.60mil -150.00mil 2.6449mm -150.00mil 50.00mil 20.00mil 56.00mil "1" "1" "square,edge2"]
 	Pad[-2.6449mm -50.00mil -37.60mil -50.00mil 50.00mil 20.00mil 56.00mil "2" "2" "square"]
@@ -1858,8 +1858,8 @@ Layer(4 "silk")
 (
 	Text[630.00mil 2090.00mil 0 100 "Iowa Scaled Engineering" "clearline,onsolder"]
 	Text[630.00mil 2010.00mil 0 100 "ARD-DCCSHIELD v1.0" "clearline,onsolder"]
-	Text[448.10mil 1835.00mil 0 100 "(C) 2015 CC BY-SA" "clearline,onsolder"]
-	Text[615.00mil 1945.00mil 0 100 "http://www.iascaled.com" "clearline,onsolder"]
+	Text[630.00mil 1945.00mil 0 100 "http://www.iascaled.com" "clearline,onsolder"]
+	Text[623.10mil 1875.00mil 0 100 "(C) 2015 CC BY-SA" "clearline,onsolder"]
 )
 Layer(5 "silk")
 (
@@ -1982,6 +1982,10 @@ Layer(5 "silk")
 	Text[1135.00mil 745.00mil 0 100 "I2C P/Us" "clearline"]
 	Text[805.00mil 899.57mil 1 100 "D6=/INT" "clearline"]
 	Text[760.00mil 965.00mil 0 100 "ENABLE ACK" "clearline"]
+	Text[1865.00mil 130.00mil 2 73 "SDA" "clearline"]
+	Text[2070.00mil 250.00mil 2 77 "SCL" "clearline"]
+	Text[1855.00mil 340.00mil 2 77 "5V" "clearline"]
+	Text[2080.00mil 435.00mil 2 77 "GND" "clearline,selected"]
 	Polygon("clearpoly")
 	(
 		[1320.00mil 1310.00mil] [1365.00mil 1310.00mil] [1365.00mil 1355.00mil] [1320.00mil 1355.00mil] 
