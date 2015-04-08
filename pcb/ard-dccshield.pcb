@@ -5,7 +5,7 @@ FileVersion[20091103]
 
 PCB["" 2110.00mil 2710.00mil]
 
-Grid[500.000000 0.0000 0.0000 1]
+Grid[500.000000 0.0000 0.0000 0]
 PolyArea[200000000.000000]
 Thermal[0.500000]
 DRC[8.00mil 10.00mil 8.00mil 8.00mil 20.00mil 10.00mil]
@@ -822,7 +822,6 @@ Via[1670.00mil 500.00mil 40.00mil 20.00mil 0.0000 20.00mil "" "thermal(0S,1S)"]
 Via[1720.00mil 500.00mil 40.00mil 20.00mil 0.0000 20.00mil "" "thermal(0S,1S)"]
 Via[1670.00mil 450.00mil 40.00mil 20.00mil 0.0000 20.00mil "" "thermal(0S,1S)"]
 Via[1720.00mil 450.00mil 40.00mil 20.00mil 0.0000 20.00mil "" "thermal(0S,1S)"]
-Via[2040.00mil 175.00mil 40.00mil 20.00mil 0.0000 20.00mil "" ""]
 Via[1240.00mil 1970.00mil 40.00mil 20.00mil 0.0000 20.00mil "" ""]
 Via[750.00mil 685.00mil 40.00mil 20.00mil 0.0000 20.00mil "" ""]
 Via[705.00mil 630.00mil 40.00mil 20.00mil 0.0000 20.00mil "" ""]
@@ -953,7 +952,7 @@ Element["" "1210" "C4" "10uF_50V" 615.00mil 1585.00mil 3.50mil 68.50mil 0 100 ""
 
 	)
 
-Element["" "1210" "C3" "10uF_50V" 380.00mil 1585.00mil 23.50mil 98.50mil 0 100 ""]
+Element["" "1210" "C3" "10uF_50V" 380.00mil 1585.00mil 18.50mil 68.50mil 0 100 ""]
 (
 	Pad[59.05mil -27.55mil 59.05mil 27.55mil 51.18mil 32.00mil 57.18mil "1" "1" "square"]
 	Pad[-59.05mil -27.55mil -59.05mil 27.55mil 51.18mil 0.0000 57.18mil "2" "2" "square"]
@@ -980,7 +979,7 @@ Element["" "0805" "C1" "1uF" 1355.00mil 1950.00mil 93.50mil -31.50mil 0 100 ""]
 
 	)
 
-Element["" "MB1-PLCC4" "U2" "unknown" 395.00mil 2160.00mil 99.00mil -221.00mil 0 100 ""]
+Element["" "MB1-PLCC4" "U2" "unknown" 395.00mil 2160.00mil -101.00mil -211.00mil 0 100 ""]
 (
 	Pad[50.00mil -124.50mil 50.00mil -100.50mil 31.00mil 28.00mil 33.00mil "1" "1" "square"]
 	Pad[50.00mil 100.50mil 50.00mil 124.50mil 31.00mil 24.00mil 33.00mil "2" "2" "square,edge2"]
@@ -1284,24 +1283,6 @@ Element["" "0805" "R9" "330" 1145.00mil 1535.00mil 54.02mil -71.50mil 0 100 ""]
 
 	)
 
-Element["" "JUMPER4-SMT" "J8" "unknown" 49.1710mm 260.00mil -1.3971mm 215.00mil 0 100 ""]
-(
-	Pad[37.60mil -150.00mil 2.6449mm -150.00mil 50.00mil 20.00mil 56.00mil "1" "1" "square,edge2"]
-	Pad[-2.6449mm -50.00mil -37.60mil -50.00mil 50.00mil 20.00mil 56.00mil "2" "2" "square"]
-	Pad[37.60mil 50.00mil 2.6449mm 50.00mil 50.00mil 20.00mil 56.00mil "3" "3" "square,edge2"]
-	Pad[-2.6449mm 150.00mil -37.60mil 150.00mil 50.00mil 0.0000 56.00mil "4" "4" "square"]
-	ElementLine [-50.00mil -200.00mil 50.00mil -200.00mil 10.00mil]
-	ElementLine [50.00mil 200.00mil -50.00mil 200.00mil 10.00mil]
-	ElementLine [50.00mil -200.00mil 50.00mil -190.00mil 10.00mil]
-	ElementLine [50.00mil -110.00mil 50.00mil 10.00mil 10.00mil]
-	ElementLine [50.00mil 90.00mil 50.00mil 200.00mil 10.00mil]
-	ElementLine [-50.00mil 200.00mil -50.00mil 190.00mil 10.00mil]
-	ElementLine [-50.00mil 110.00mil -50.00mil -10.00mil 10.00mil]
-	ElementLine [-50.00mil -90.00mil -50.00mil -200.00mil 10.00mil]
-	ElementArc [-65.00mil -215.00mil 5.00mil 5.00mil 0 360 10.00mil]
-
-	)
-
 Element["" "SOT89" "U4" "unknown" 630.00mil 54.7571mm -25.05mil -4.2111mm 0 100 ""]
 (
 	Pad[59.06mil -59.84mil 59.06mil -18.90mil 37.80mil 20.00mil 43.80mil "1" "1" "pin,square"]
@@ -1357,6 +1338,21 @@ Element["" "JUMPER4-SMT" "JP7" "unknown" 915.00mil 1220.00mil 110.00mil -145.00m
 	ElementLine [-10.00mil 50.00mil 110.00mil 50.00mil 10.00mil]
 	ElementLine [-200.00mil 50.00mil -90.00mil 50.00mil 10.00mil]
 	ElementArc [-215.00mil 65.00mil 5.00mil 5.00mil 90 360 10.00mil]
+
+	)
+
+Element["" "JUMPER4" "J8" "unknown" 1930.00mil 110.00mil -25.00mil 365.00mil 0 100 ""]
+(
+	Pin[0.0000 0.0000 60.00mil 30.00mil 66.00mil 38.00mil "1" "1" "square"]
+	Pin[0.0000 100.00mil 60.00mil 30.00mil 66.00mil 38.00mil "2" "2" ""]
+	Pin[0.0000 200.00mil 60.00mil 30.00mil 66.00mil 38.00mil "3" "3" ""]
+	Pin[0.0000 300.00mil 60.00mil 30.00mil 66.00mil 38.00mil "4" "4" "thermal(0X,1X)"]
+	ElementLine [-50.00mil -50.00mil -50.00mil 350.00mil 10.00mil]
+	ElementLine [-50.00mil 350.00mil 50.00mil 350.00mil 10.00mil]
+	ElementLine [50.00mil 350.00mil 50.00mil -50.00mil 10.00mil]
+	ElementLine [50.00mil -50.00mil -50.00mil -50.00mil 10.00mil]
+	ElementLine [-50.00mil 50.00mil 50.00mil 50.00mil 10.00mil]
+	ElementLine [50.00mil 50.00mil 50.00mil -50.00mil 10.00mil]
 
 	)
 Layer(1 "component")
@@ -1547,14 +1543,6 @@ Layer(1 "component")
 	Line[264.57mil 375.43mil 285.00mil 355.00mil 25.00mil 20.00mil "clearline"]
 	Line[285.00mil 355.00mil 285.00mil 80.00mil 25.00mil 20.00mil "clearline"]
 	Line[285.00mil 80.00mil 325.00mil 40.00mil 25.00mil 20.00mil "clearline"]
-	Line[325.00mil 40.00mil 1815.00mil 40.00mil 25.00mil 20.00mil "clearline"]
-	Line[1815.00mil 40.00mil 2010.00mil 235.00mil 25.00mil 20.00mil "clearline"]
-	Line[2010.00mil 235.00mil 2010.00mil 7.7910mm 25.00mil 20.00mil "clearline"]
-	Line[2010.00mil 7.7910mm 50.9710mm 310.00mil 25.00mil 20.00mil "clearline"]
-	Line[1865.00mil 210.00mil 1630.00mil 210.00mil 25.00mil 20.00mil "clearline"]
-	Line[1630.00mil 210.00mil 1585.00mil 255.00mil 25.00mil 20.00mil "clearline"]
-	Line[1585.00mil 255.00mil 1585.00mil 570.00mil 25.00mil 20.00mil "clearline"]
-	Line[2040.00mil 175.00mil 2040.00mil 110.00mil 25.00mil 20.00mil "clearline"]
 	Line[700.00mil 11.5350mm 700.00mil 350.00mil 10.00mil 20.00mil "clearline"]
 	Line[700.00mil 350.00mil 725.00mil 325.00mil 10.00mil 20.00mil "clearline"]
 	Line[725.00mil 325.00mil 1180.00mil 325.00mil 10.00mil 20.00mil "clearline"]
@@ -1643,6 +1631,15 @@ Layer(1 "component")
 	Line[729.00mil 2430.00mil 666.00mil 2493.00mil 25.00mil 20.00mil "clearline"]
 	Line[666.00mil 2493.00mil 566.00mil 2493.00mil 25.00mil 20.00mil "clearline"]
 	Line[1245.00mil 1425.00mil 1245.00mil 1620.00mil 25.00mil 20.00mil "clearline"]
+	Line[1930.00mil 210.00mil 1840.00mil 210.00mil 25.00mil 20.00mil "clearline"]
+	Line[1840.00mil 210.00mil 1815.00mil 235.00mil 25.00mil 20.00mil "clearline"]
+	Line[1815.00mil 235.00mil 1815.00mil 550.00mil 25.00mil 20.00mil "clearline"]
+	Line[1815.00mil 550.00mil 1795.00mil 570.00mil 25.00mil 20.00mil "clearline"]
+	Line[325.00mil 40.00mil 1990.00mil 40.00mil 25.00mil 20.00mil "clearline"]
+	Line[2020.00mil 70.00mil 2020.00mil 290.00mil 25.00mil 20.00mil "clearline"]
+	Line[2020.00mil 290.00mil 2000.00mil 310.00mil 25.00mil 20.00mil "clearline"]
+	Line[2000.00mil 310.00mil 1930.00mil 310.00mil 25.00mil 20.00mil "clearline"]
+	Line[1990.00mil 40.00mil 2020.00mil 70.00mil 25.00mil 20.00mil "clearline"]
 	Polygon("clearpoly")
 	(
 		[25.00mil 1550.00mil] [745.00mil 1550.00mil] [745.00mil 1895.00mil] [25.00mil 1895.00mil] 
@@ -1838,6 +1835,9 @@ Layer(2 "solder")
 	Line[1225.00mil 1395.00mil 1245.00mil 1415.00mil 40.00mil 20.00mil "clearline"]
 	Line[1145.00mil 1645.00mil 1145.00mil 1435.00mil 10.00mil 20.00mil "clearline"]
 	Line[1145.00mil 1435.00mil 1105.00mil 1395.00mil 10.00mil 20.00mil "clearline"]
+	Line[1930.00mil 110.00mil 2015.00mil 110.00mil 25.00mil 20.00mil "clearline"]
+	Line[2015.00mil 110.00mil 2040.00mil 135.00mil 25.00mil 20.00mil "clearline"]
+	Line[2040.00mil 135.00mil 2040.00mil 190.00mil 25.00mil 20.00mil "clearline"]
 	Polygon("clearpoly")
 	(
 		[25.00mil 25.00mil] [2080.00mil 25.00mil] [2080.00mil 2365.00mil] [25.00mil 2365.00mil] 
@@ -1872,10 +1872,10 @@ Layer(3 "outline")
 )
 Layer(4 "silk")
 (
-	Text[630.00mil 2090.00mil 0 100 "Iowa Scaled Engineering" "clearline,onsolder"]
-	Text[630.00mil 2010.00mil 0 100 "ARD-DCCSHIELD v1.0" "clearline,onsolder"]
-	Text[630.00mil 1945.00mil 0 100 "http://www.iascaled.com" "clearline,onsolder"]
-	Text[623.10mil 1875.00mil 0 100 "(C) 2015 CC BY-SA" "clearline,onsolder"]
+	Text[1170.00mil 31.8990mm 0 100 "Iowa Scaled Engineering" "clearline,onsolder"]
+	Text[1170.00mil 29.8670mm 0 100 "ARD-DCCSHIELD v1.0" "clearline,onsolder"]
+	Text[1170.00mil 28.2160mm 0 100 "http://www.iascaled.com" "clearline,onsolder"]
+	Text[1163.10mil 26.4380mm 0 100 "(C) 2015 CC BY-SA" "clearline,onsolder"]
 )
 Layer(5 "silk")
 (
@@ -1990,7 +1990,6 @@ Layer(5 "silk")
 	Text[580.00mil 90.00mil 2 90 "D9" "clearline"]
 	Text[385.00mil 90.00mil 2 90 "D4" "clearline"]
 	Text[480.00mil 90.00mil 2 90 "D8" "clearline"]
-	Text[1790.00mil 665.00mil 1 100 "I2C Bus" "clearline"]
 	Text[1450.00mil 1225.00mil 0 100 "/IORST = VIO" "clearline"]
 	Text[1465.00mil 1375.00mil 0 100 "DCC on D7" "clearline"]
 	Text[1450.00mil 1300.00mil 0 100 "/IORST = D7" "clearline"]
@@ -2002,10 +2001,11 @@ Layer(5 "silk")
 	Text[1135.00mil 745.00mil 0 100 "I2C P/Us" "clearline"]
 	Text[760.00mil 965.00mil 0 100 "ENABLE ACK" "clearline"]
 	Text[1865.00mil 130.00mil 2 73 "SDA" "clearline"]
-	Text[2070.00mil 250.00mil 2 77 "SCL" "clearline"]
-	Text[1855.00mil 340.00mil 2 77 "5V" "clearline"]
-	Text[2080.00mil 435.00mil 2 77 "GND" "clearline"]
 	Text[680.43mil 805.00mil 0 100 "D6=/INT" "clearline"]
+	Text[1865.00mil 435.00mil 2 77 "GND" "clearline"]
+	Text[1855.00mil 330.00mil 2 77 "5V" "clearline"]
+	Text[1860.00mil 235.00mil 2 77 "SCL" "clearline"]
+	Text[2000.00mil 375.00mil 1 100 "I2C Bus" "clearline"]
 	Polygon("clearpoly")
 	(
 		[1320.00mil 1310.00mil] [1365.00mil 1310.00mil] [1365.00mil 1355.00mil] [1320.00mil 1355.00mil] 
