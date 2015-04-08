@@ -1092,15 +1092,6 @@ Element["" "SMDIP8" "U1" "unknown" 1355.00mil 2190.00mil -20.00mil 200.00mil 0 1
 
 	)
 
-Element["" "1206" "D2" "unknown" 155.00mil 165.00mil -121.50mil 38.50mil 0 100 ""]
-(
-	Pad[-59.05mil -11.81mil -59.05mil 11.81mil 51.18mil 0.0000 57.18mil "1" "1" "square"]
-	Pad[59.05mil -11.81mil 59.05mil 11.81mil 51.18mil 26.00mil 57.18mil "2" "2" "square"]
-	ElementLine [-23.62mil -37.40mil 23.62mil -37.40mil 10.00mil]
-	ElementLine [-23.62mil 37.40mil 23.62mil 37.40mil 10.00mil]
-
-	)
-
 Element["" "0805" "R3" "1k" 220.00mil 340.00mil -107.36mil -31.50mil 0 100 ""]
 (
 	Pad[-3.93mil -35.43mil 3.93mil -35.43mil 51.18mil 26.00mil 57.18mil "1" "1" "square"]
@@ -1137,15 +1128,6 @@ Element["hidename" "TERMBLK2_200MIL" "J7" "unknown" 666.00mil 2493.00mil -181.00
 	ElementLine [-200.00mil -128.00mil 200.00mil -128.00mil 10.00mil]
 	ElementLine [-200.00mil -172.00mil -200.00mil 128.00mil 10.00mil]
 	ElementLine [200.00mil -172.00mil 200.00mil 128.00mil 10.00mil]
-
-	)
-
-Element["" "1206" "D1" "unknown" 1010.00mil 2200.00mil -20.00mil 105.00mil 0 100 ""]
-(
-	Pad[-11.81mil -59.05mil 11.81mil -59.05mil 51.18mil 20.00mil 57.18mil "1" "1" "square"]
-	Pad[-11.81mil 59.05mil 11.81mil 59.05mil 51.18mil 20.00mil 57.18mil "2" "2" "square"]
-	ElementLine [37.40mil -23.62mil 37.40mil 23.62mil 10.00mil]
-	ElementLine [-37.40mil -23.62mil -37.40mil 23.62mil 10.00mil]
 
 	)
 
@@ -1314,7 +1296,7 @@ Element["" "LTV352-1" "U5" "LTV-352T" 920.00mil 1545.00mil 25.00mil -170.00mil 0
 
 	)
 
-Element["" "1210" "R8" "75" 20.7251mm 2010.00mil 108.50mil -36.50mil 0 100 ""]
+Element["" "1210" "R8" "75" 20.7251mm 2010.00mil -111.50mil -121.50mil 0 100 ""]
 (
 	Pad[-59.05mil -27.55mil -59.05mil 27.55mil 51.18mil 20.00mil 57.18mil "1" "1" "square"]
 	Pad[59.05mil -27.55mil 59.05mil 27.55mil 51.18mil 20.00mil 57.18mil "2" "2" "square"]
@@ -1355,16 +1337,29 @@ Element["" "JUMPER4" "J8" "unknown" 1930.00mil 110.00mil -25.00mil 365.00mil 0 1
 	ElementLine [50.00mil 50.00mil 50.00mil -50.00mil 10.00mil]
 
 	)
+
+Element["" "0805" "D1" "unknown" 1010.00mil 2180.00mil -26.50mil 68.50mil 0 100 ""]
+(
+	Pad[-3.93mil -35.43mil 3.93mil -35.43mil 51.18mil 20.00mil 57.18mil "1" "1" "square"]
+	Pad[-3.93mil 35.43mil 3.93mil 35.43mil 51.18mil 20.00mil 57.18mil "2" "2" "square"]
+	ElementLine [27.55mil -3.93mil 27.55mil 3.93mil 10.00mil]
+	ElementLine [-27.55mil -3.93mil -27.55mil 3.93mil 10.00mil]
+
+	)
+
+Element["" "0805" "D2" "unknown" 145.00mil 150.00mil -56.07mil 48.50mil 0 100 ""]
+(
+	Pad[-35.43mil -3.93mil -35.43mil 3.93mil 51.18mil 0.0000 57.18mil "1" "1" "square"]
+	Pad[35.43mil -3.93mil 35.43mil 3.93mil 51.18mil 20.00mil 57.18mil "2" "2" "square"]
+	ElementLine [-3.93mil -27.55mil 3.93mil -27.55mil 10.00mil]
+	ElementLine [-3.93mil 27.55mil 3.93mil 27.55mil 10.00mil]
+
+	)
 Layer(1 "component")
 (
 	Line[905.00mil 2145.00mil 1170.00mil 2145.00mil 25.00mil 20.00mil "clearline"]
-	Line[1165.00mil 2240.00mil 1090.00mil 2240.00mil 25.00mil 20.00mil "clearline"]
-	Line[1090.00mil 2240.00mil 1070.00mil 2260.00mil 25.00mil 20.00mil "clearline"]
 	Line[930.00mil 2145.00mil 815.43mil 2145.00mil 25.00mil 20.00mil "clearline"]
 	Line[815.43mil 2145.00mil 815.00mil 54.4721mm 25.00mil 20.00mil "clearline"]
-	Line[910.00mil 2215.00mil 910.00mil 2240.00mil 25.00mil 20.00mil "clearline"]
-	Line[910.00mil 2240.00mil 930.00mil 2260.00mil 25.00mil 20.00mil "clearline"]
-	Line[1070.00mil 2260.00mil 930.00mil 2260.00mil 25.00mil 20.00mil "clearline"]
 	Line[505.00mil 1255.00mil 555.00mil 1305.00mil 55.00mil 20.00mil "clearline"]
 	Line[555.00mil 1305.00mil 555.00mil 1405.00mil 55.00mil 20.00mil "clearline"]
 	Line[555.00mil 1405.00mil 554.00mil 1406.00mil 40.00mil 20.00mil "clearline"]
@@ -1425,8 +1420,6 @@ Layer(1 "component")
 	Line[1895.00mil 670.00mil 1895.00mil 805.00mil 25.00mil 20.00mil "clearline"]
 	Line[1895.00mil 805.00mil 1935.00mil 845.00mil 25.00mil 20.00mil "clearline"]
 	Line[1935.00mil 845.00mil 2005.00mil 845.00mil 25.00mil 20.00mil "clearline"]
-	Line[220.00mil 304.57mil 220.00mil 170.95mil 25.00mil 26.00mil "clearline"]
-	Line[220.00mil 170.95mil 214.05mil 165.00mil 25.00mil 20.00mil "clearline"]
 	Line[220.00mil 375.43mil 220.00mil 485.00mil 25.00mil 20.00mil "clearline"]
 	Line[220.00mil 485.00mil 260.00mil 525.00mil 25.00mil 20.00mil "clearline"]
 	Line[2005.00mil 745.00mil 2045.00mil 745.00mil 10.00mil 20.00mil "clearline"]
@@ -1526,7 +1519,6 @@ Layer(1 "component")
 	Line[710.00mil 1790.00mil 740.00mil 1760.00mil 25.00mil 20.00mil "clearline"]
 	Line[740.00mil 1760.00mil 740.00mil 1547.50mil 25.00mil 22.00mil "clearline"]
 	Line[740.00mil 1547.50mil 792.50mil 1495.00mil 25.00mil 20.00mil "clearline"]
-	Line[955.00mil 2260.00mil 945.00mil 2260.00mil 25.00mil 20.00mil "clearline"]
 	Line[105.00mil 2105.00mil 225.00mil 2105.00mil 10.00mil 20.00mil "clearline"]
 	Line[225.00mil 2105.00mil 255.00mil 2135.00mil 10.00mil 20.00mil "clearline"]
 	Line[255.00mil 2135.00mil 255.00mil 2420.00mil 10.00mil 20.00mil "clearline"]
@@ -1640,6 +1632,17 @@ Layer(1 "component")
 	Line[2020.00mil 290.00mil 2000.00mil 310.00mil 25.00mil 20.00mil "clearline"]
 	Line[2000.00mil 310.00mil 1930.00mil 310.00mil 25.00mil 20.00mil "clearline"]
 	Line[1990.00mil 40.00mil 2020.00mil 70.00mil 25.00mil 20.00mil "clearline"]
+	Line[910.00mil 2215.00mil 25.6431mm 2215.00mil 25.00mil 20.00mil "clearline"]
+	Line[25.6431mm 2215.00mil 1010.00mil 56.2719mm 25.00mil 20.00mil "clearline"]
+	Line[1010.00mil 56.2719mm 26.6809mm 56.2719mm 25.00mil 20.00mil "clearline"]
+	Line[26.6809mm 56.2719mm 1075.00mil 2240.00mil 25.00mil 20.00mil "clearline"]
+	Line[1075.00mil 2240.00mil 1165.00mil 2240.00mil 25.00mil 20.00mil "clearline"]
+	Line[1010.00mil 2335.00mil 1010.00mil 2220.00mil 40.00mil 20.00mil "clearline"]
+	Line[1010.00mil 2220.00mil 1015.00mil 2215.00mil 40.00mil 20.00mil "clearline"]
+	Line[220.00mil 304.57mil 220.00mil 255.00mil 25.00mil 20.00mil "clearline"]
+	Line[220.00mil 255.00mil 180.00mil 215.00mil 25.00mil 20.00mil "clearline"]
+	Line[180.00mil 215.00mil 180.00mil 150.43mil 25.00mil 20.00mil "clearline"]
+	Line[180.00mil 150.43mil 180.43mil 150.00mil 25.00mil 20.00mil "clearline"]
 	Polygon("clearpoly")
 	(
 		[25.00mil 1550.00mil] [745.00mil 1550.00mil] [745.00mil 1895.00mil] [25.00mil 1895.00mil] 
@@ -1979,8 +1982,7 @@ Layer(5 "silk")
 	Text[270.00mil 660.00mil 3 100 "GND" "clearline"]
 	Text[270.00mil 470.00mil 3 100 "+5V" "clearline"]
 	Text[270.00mil 805.00mil 3 100 "+Vioref" "clearline"]
-	Text[210.00mil 205.00mil 0 100 "+" "clearline"]
-	Text[1000.00mil 2045.00mil 0 100 "+" "clearline"]
+	Text[230.00mil 120.00mil 0 100 "+" "clearline"]
 	Text[195.00mil 105.00mil 2 100 "PWR" "clearline"]
 	Text[1100.00mil 90.00mil 2 85 "D14" "clearline"]
 	Text[995.00mil 90.00mil 2 85 "D13" "clearline"]
@@ -2006,6 +2008,9 @@ Layer(5 "silk")
 	Text[1855.00mil 330.00mil 2 77 "5V" "clearline"]
 	Text[1860.00mil 235.00mil 2 77 "SCL" "clearline"]
 	Text[2000.00mil 375.00mil 1 100 "I2C Bus" "clearline"]
+	Text[950.00mil 1985.00mil 0 100 "DCC" "clearline"]
+	Text[955.00mil 2045.00mil 0 100 "ON" "clearline,selected"]
+	Text[1050.00mil 2065.00mil 0 100 "+" "clearline"]
 	Polygon("clearpoly")
 	(
 		[1320.00mil 1310.00mil] [1365.00mil 1310.00mil] [1365.00mil 1355.00mil] [1320.00mil 1355.00mil] 
