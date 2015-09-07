@@ -1870,7 +1870,7 @@ Layer(4 "silk")
 	Line[1160.00mil 1195.00mil 1895.00mil 1195.00mil 10.00mil 20.00mil "clearline"]
 	Text[1170.00mil 28.2160mm 0 100 "http://www.iascaled.com" "clearline,onsolder"]
 	Text[1163.10mil 26.4380mm 0 100 "(C) 2015 CC BY-SA" "clearline,onsolder"]
-	Text[1170.00mil 1175.00mil 0 100 "ARD-DCCSHIELD v1.1" "clearline,onsolder"]
+	Text[1170.00mil 1175.00mil 0 100 "ARD-DCCSHIELD v1.2" "clearline,onsolder"]
 	Text[1170.00mil 32.5340mm 0 100 "Iowa Scaled Engineering" "clearline,onsolder"]
 )
 Layer(5 "silk")
