@@ -65,9 +65,11 @@ The green LED indicates that the ARD-DCCSHIELD is correctly powered.  If this li
 
 I2C is an open-collector bus, meaning each node can only pull the line low.  Therefore, both SDA and SCL must be pulled up with resistors to make the bus function.  If you intend to use the I2C connections on the ARD-DCCSHIELD and don't have pull-ups elsewhere, jumper pins 1-2 and 3-4 of JP1 to provide 2k pull-ups on both SDA and SCL.
 
-### JP2 (Pins 1-2) - I2C /IORST 
+### JP2 (Pins 1-2) - I2C /IORST
 
 If you need power on the [Iowa Scaled Engineering standard I2C 6p6c (RJ11) connector](http://www.iascaled.com/info/ISEI2C6p6cConnector), it's typically sent down the /IORST line.  Jumpering pins 1-2 will connect VIO on the Arduino/shield to the /IORST line on the connector (pin 4).  If you don't intend to use I2C or don't need power, leave this jumper open.
+
+Alternately, if you're not using Arduino D7 for your DCC signal (see JP4 configuration below) and want the ability to reset I2C peripherals using this signal, you can tie /IORST to D7 by placing the number between pins 2-3.
 
 ### JP3 - I2C /INT and /OE 
 
