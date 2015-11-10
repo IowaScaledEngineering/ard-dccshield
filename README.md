@@ -2,7 +2,7 @@
 
 The ARD-DCCSHIELD is an optoisolated interface shield for connecting an Arduino to a model railroad DCC control system.  Additionally, the board has provisions for connecting I2C accessories and general purpose I/O lines, as well as optionally (jumper selectably) powering the Arduino off of DCC power and providing up to 400mA of 5VDC to connected circuitry.
 
-The board is designed to be compatible with various DCC decoder libraries and Arduino boards.  We typically use [Alex Shepard's excellent NmraDcc library](https://github.com/mrrwa/NmraDcc/).  
+The board is designed to be compatible with various DCC decoder libraries and Arduino boards.  We typically use [Alex Shepherd's excellent NmraDcc library](https://github.com/mrrwa/NmraDcc/).  
 
 The ARD-DCCSHIELD was designed by Nathan Holmes (maverick /at/ drgw.net) and Michael Petersen (railfan /at/ drgw.net).  The ARD-DCCSHIELD is open hardware, meaning that anyone is welcome to make their own or change/improve upon our design to meet their needs.  Please refer to the hardware and software license files in this repository for details.
 
