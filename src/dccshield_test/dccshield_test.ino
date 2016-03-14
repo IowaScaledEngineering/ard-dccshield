@@ -75,25 +75,25 @@ void loop()
   while(digitalRead(7));
   Serial.print("Done!\n");
 
-  Serial.print("Checking SDA jumper (JP1 left)");
-  pinMode(A4, OUTPUT);
-  digitalWrite(A4, 0);
-  pinMode(A4, INPUT);
-  while(!digitalRead(A4))
-  {
-    Serial.print(".");
-  }
-  Serial.print(" Done!\n");
-
-  Serial.print("Checking SCL jumper (JP1 right)");
-  pinMode(A5, OUTPUT);
-  digitalWrite(A5, 0);
-  pinMode(A5, INPUT);
-  while(!digitalRead(A5))
-  {
-    Serial.print(".");
-  }
-  Serial.print(" Done!\n");
+//  Serial.print("Checking SDA jumper (JP1 left)");
+//  pinMode(A4, OUTPUT);
+//  digitalWrite(A4, 0);
+//  pinMode(A4, INPUT);
+//  while(!digitalRead(A4))
+//  {
+//    Serial.print(".");
+//  }
+//  Serial.print(" Done!\n");
+//
+//  Serial.print("Checking SCL jumper (JP1 right)");
+//  pinMode(A5, OUTPUT);
+//  digitalWrite(A5, 0);
+//  pinMode(A5, INPUT);
+//  while(!digitalRead(A5))
+//  {
+//    Serial.print(".");
+//  }
+//  Serial.print(" Done!\n");
 
   Serial.print("DCC ACK (install JP7 jumpers).  Check current...\n");
   while(!Serial.available())
