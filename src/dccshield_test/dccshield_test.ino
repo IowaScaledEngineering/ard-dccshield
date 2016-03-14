@@ -19,6 +19,13 @@ LICENSE:
 
 *************************************************************************/
 
+/*  Test Jig Setup:
+ *  12V DC in, connected to the DCC IN terminals.  Red LED across a 30ohm resistor
+ *  in series with power.  This LED will light during an ACK pulse.
+ *  
+ *  RJ11 with 10k resistors from all pins to GND, except IORST.
+ */
+
 void setup()
 {
 	Serial.begin(9600);
