@@ -37,6 +37,9 @@ void setup()
   pinMode(12, INPUT_PULLUP);
   pinMode(13, INPUT_PULLUP);
   pinMode(A0, INPUT_PULLUP);
+
+  pinMode(A4, INPUT);
+  pinMode(A5, INPUT);
 }
 
 void printDigitalIOs(void)
@@ -55,7 +58,7 @@ void printDigitalIOs(void)
 
 void loop()
 {
-  Serial.print("Connect DCC: Check for D1 on, D2 on\n");
+  Serial.print("Connect DCC: Check for D1 & D2 on\n");
   Serial.print("Swap DCC: Check for D1 off\n");
   while(!Serial.available());
   while(Serial.available())
@@ -75,27 +78,64 @@ void loop()
   while(digitalRead(7));
   Serial.print("Done!\n");
 
-//  Serial.print("Checking SDA jumper (JP1 left)");
-//  pinMode(A4, OUTPUT);
-//  digitalWrite(A4, 0);
-//  pinMode(A4, INPUT);
-//  while(!digitalRead(A4))
-//  {
-//    Serial.print(".");
-//  }
-//  Serial.print(" Done!\n");
-//
-//  Serial.print("Checking SCL jumper (JP1 right)");
-//  pinMode(A5, OUTPUT);
-//  digitalWrite(A5, 0);
-//  pinMode(A5, INPUT);
-//  while(!digitalRead(A5))
-//  {
-//    Serial.print(".");
-//  }
-//  Serial.print(" Done!\n");
+  Serial.print("\nInstall JP3 (both), JP1 (both), JP2 (right)...\n");
+  while(!Serial.available());
+  while(Serial.available())
+  {
+    Serial.read();  // Flush the buffer
+  }
+  Serial.print("Checking I2C connector not connected...");
+  while(!(digitalRead(5) && digitalRead(6)));
+  Serial.print(" Done!\n");
+  
+  Serial.print("\nConnect I2C...\n\n");
+  Serial.print("Checking D5 & D6 low...");
+  while(digitalRead(5) || digitalRead(6));
+  Serial.print(" Done!\n");
 
-  Serial.print("DCC ACK (install JP7 jumpers).  Check current...\n");
+  Serial.print("Checking SDA and SCL...\n");
+  int pass1 = 0, pass2 = 0;
+  while(!pass1 || !pass2)
+  {
+    int adc;
+    Serial.print("SDA: ");
+    adc = analogRead(4);
+    Serial.print(adc);
+    if((adc > 400) && (adc < 600))
+    {
+      Serial.print(" Pass!\n");
+      pass1 = 1;
+    }
+    else
+    {
+      Serial.print(" *** Fail ***\n");
+      pass1 = 0;
+    }
+    Serial.print("SCL: ");
+    adc = analogRead(5);
+    Serial.print(adc);
+    if((adc > 400) && (adc < 600))
+    {
+      Serial.print(" Pass!\n");
+      pass2 = 1;
+    }
+    else
+    {
+      Serial.print(" *** Fail ***\n");
+      pass2 = 0;
+    }
+    Serial.print("--------------------\n");
+    delay(500);
+  }  
+
+  Serial.print("\nInstall JP7 (both)...\n");
+  while(!Serial.available());
+  while(Serial.available())
+  {
+    Serial.read();  // Flush the buffer
+  }
+
+  Serial.print("DCC ACK (install JP7 jumpers).  Check blinking LED...\n");
   while(!Serial.available())
   {
     digitalWrite(A1, HIGH);
