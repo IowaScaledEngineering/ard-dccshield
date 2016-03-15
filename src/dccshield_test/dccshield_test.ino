@@ -65,8 +65,8 @@ void printDigitalIOs(void)
 
 void loop()
 {
-  Serial.print("Connect DCC: Check for D1 & D2 on\n");
-  Serial.print("Swap DCC: Check for D1 off\n");
+  Serial.print("Connect 12V to DCC IN... Check for D1 on\n");
+  Serial.print("Swap 12V polarity... Check for D1 off\n");
   while(!Serial.available());
   while(Serial.available())
   {
