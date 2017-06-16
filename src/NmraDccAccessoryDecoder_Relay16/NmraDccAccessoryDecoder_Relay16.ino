@@ -20,8 +20,7 @@
 // Un-Comment the line below to Enable DCC ACK for Service Mode Programming Read CV Capablilty 
 #define ENABLE_DCC_ACK  15  // This is A1 on the Iowa Scaled Engineering ARD-DCCSHIELD DCC Shield
 
-#define NUM_TURNOUTS 16              // Set Number of Turnouts (Pairs of Pins)
-#define ACTIVE_OUTPUT_STATE HIGH			// Set the ACTIVE State of the output to Drive the Turnout motor electronics HIGH or LOW 
+#define NUM_TURNOUTS 16              // Set Number of relay outputs - this should pretty much be 16
 
 #define DCC_DECODER_VERSION_NUM 11  // Set the Decoder Version - Used by JMRI to Identify the decoder
 
@@ -36,10 +35,6 @@ struct CVPair
   uint8_t   Value;
 };
 
-#define CV_ACCESSORY_DECODER_OUTPUT_PULSE_TIME 2  // CV for the Output Pulse ON ms
-#define CV_ACCESSORY_DECODER_CDU_RECHARGE_TIME 3  // CV for the delay in ms to allow a CDU to recharge
-#define CV_ACCESSORY_DECODER_ACTIVE_STATE      4  // CV to define the ON Output State 
-
 // To set the Turnout Addresses for this board you need to change the CV values for CV1 (CV_ACCESSORY_DECODER_ADDRESS_LSB) and 
 // CV9 (CV_ACCESSORY_DECODER_ADDRESS_MSB) in the FactoryDefaultCVs structure below. The Turnout Addresses are defined as: 
 // Base Turnout Address is: ((((CV9 * 64) + CV1) - 1) * 4) + 1 
@@ -49,9 +44,6 @@ CVPair FactoryDefaultCVs [] =
 {
   {CV_ACCESSORY_DECODER_ADDRESS_LSB,        1},		// CV 1 Board Address (lower 6 bits) 
   {CV_ACCESSORY_DECODER_ADDRESS_MSB,        0},		// CV 9 Board Address (Upper 3 bits)
-  {CV_ACCESSORY_DECODER_OUTPUT_PULSE_TIME, 50},   // x 10mS for the output pulse duration
-  {CV_ACCESSORY_DECODER_CDU_RECHARGE_TIME, 30},   // x 10mS for the CDU recharge delay time
-  {CV_ACCESSORY_DECODER_ACTIVE_STATE,    ACTIVE_OUTPUT_STATE},
 };
 
 uint8_t FactoryDefaultCVIndex = 0;
