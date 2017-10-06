@@ -11,6 +11,7 @@ For those not wanting to build their own, the boards are [available for purchase
 ## Getting Started
 
 At the bare minimum, you'll need to:
+ * Have a working knowledge of electronics and programming.  The ARD-DCCSHIELD is a building block that provides an electrical interface between an Arduino and the DCC track signal, not a complete decoder.
  * Connect DCC track voltage should be connected to J7, the two-pin connector at the bottom of the board. 
  * Configure JP4 (and possibly JP2, pins 1-2) to route the DCC signal to the appropriate Arduino digital I/O pin.
  * Provide power to the Arduino or configure JP5.
@@ -18,6 +19,14 @@ At the bare minimum, you'll need to:
 You'll also probably need to [install an Arduino library](https://www.arduino.cc/en/Guide/Libraries) to decode the DCC signal, unless you intend to write your own.
 
 If all is good, you'll get both a green and an amber LED glowing on the shield.
+
+When in doubt, please refer to the schematic.  The source files are in gEDA format, but there are PDFs of the production version schematics under the pg/ directory.  Just pick the version that corresponds to your PCB version and open the "ard-dccshield.pdf" file.
+
+ * [v1.0 Schematic][https://github.com/IowaScaledEngineering/ard-dccshield/raw/master/pg/ard-dccshield-v1.0-ba9ec04/ard-dccshield.pdf]
+ * [v1.1 Schematic][https://github.com/IowaScaledEngineering/ard-dccshield/raw/master/pg/ard-dccshield-v1.1-f6d6da8/ard-dccshield.pdf]
+ * [v1.2 Schematic][https://github.com/IowaScaledEngineering/ard-dccshield/raw/master/pg/ard-dccshield-v1.2-2bd1af7/ard-dccshield.pdf]
+ * [v1.3 Schematic][https://github.com/IowaScaledEngineering/ard-dccshield/raw/master/pg/ard-dccshield-v1.3-e23d249/ard-dccshield.pdf]
+
 
 ## Connectors
 ### J1/J2 - Standard Rev 3 Arduino Headers
