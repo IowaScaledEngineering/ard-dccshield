@@ -22,10 +22,10 @@ If all is good, you'll get both a green and an amber LED glowing on the shield.
 
 When in doubt, please refer to the schematic.  The source files are in gEDA format, but there are PDFs of the production version schematics under the pg/ directory.  Just pick the version that corresponds to your PCB version and open the "ard-dccshield.pdf" file.
 
- * [v1.0 Schematic][https://github.com/IowaScaledEngineering/ard-dccshield/raw/master/pg/ard-dccshield-v1.0-ba9ec04/ard-dccshield.pdf]
- * [v1.1 Schematic][https://github.com/IowaScaledEngineering/ard-dccshield/raw/master/pg/ard-dccshield-v1.1-f6d6da8/ard-dccshield.pdf]
- * [v1.2 Schematic][https://github.com/IowaScaledEngineering/ard-dccshield/raw/master/pg/ard-dccshield-v1.2-2bd1af7/ard-dccshield.pdf]
- * [v1.3 Schematic][https://github.com/IowaScaledEngineering/ard-dccshield/raw/master/pg/ard-dccshield-v1.3-e23d249/ard-dccshield.pdf]
+ * [v1.0 Schematic](https://github.com/IowaScaledEngineering/ard-dccshield/raw/master/pg/ard-dccshield-v1.0-ba9ec04/ard-dccshield.pdf)
+ * [v1.1 Schematic](https://github.com/IowaScaledEngineering/ard-dccshield/raw/master/pg/ard-dccshield-v1.1-f6d6da8/ard-dccshield.pdf)
+ * [v1.2 Schematic](https://github.com/IowaScaledEngineering/ard-dccshield/raw/master/pg/ard-dccshield-v1.2-2bd1af7/ard-dccshield.pdf)
+ * [v1.3 Schematic](https://github.com/IowaScaledEngineering/ard-dccshield/raw/master/pg/ard-dccshield-v1.3-e23d249/ard-dccshield.pdf)
 
 
 ## Connectors
