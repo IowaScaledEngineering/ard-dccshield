@@ -23,6 +23,9 @@ verify:
 upload:
 	$(ARDUINO) --upload --board $(BOARD) $(BASE_NAME).ino
 
-terminal:
-	miniterm.py /dev/ttyUSB1 9600
+terminal0:
+	miniterm.py /dev/ttyUSB0 115200
+
+terminal1:
+	miniterm.py /dev/ttyUSB1 115200
 
