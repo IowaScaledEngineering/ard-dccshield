@@ -28,7 +28,7 @@ LICENSE:
 
 void setup()
 {
-	Serial.begin(9600);
+	Serial.begin(115200);
 
   pinMode(2, INPUT_PULLUP);  // DCC Input
   pinMode(3, INPUT_PULLUP);  // DCC Input
