@@ -49,17 +49,41 @@ void setup()
   pinMode(A5, INPUT);
 }
 
+void printBits(byte byteToPrint)
+{
+  byte mask;
+  for(mask = 0x80; mask; mask >>= 1)
+  {
+    if(mask & byteToPrint)
+      Serial.print('1');
+    else
+      Serial.print('0');
+  }
+}
+
 void printDigitalIOs(void)
 {
+  static uint8_t io = 0xFF;
+
   Serial.print("Digital IOs: ");
   Serial.print(digitalRead(4));
+  io &= (digitalRead(4) << 7) | 0x7F;
   Serial.print(digitalRead(8));
+  io &= (digitalRead(8) << 6) | 0xBF;
   Serial.print(digitalRead(9));
+  io &= (digitalRead(9) << 5) | 0xDF;
   Serial.print(digitalRead(10));
+  io &= (digitalRead(10) << 4) | 0xEF;
   Serial.print(digitalRead(11));
+  io &= (digitalRead(11) << 3) | 0xF7;
   Serial.print(digitalRead(12));
+  io &= (digitalRead(12) << 2) | 0xFB;
   Serial.print(digitalRead(13));
+  io &= (digitalRead(13) << 1) | 0xFD;
   Serial.print(digitalRead(A0));
+  io &= (digitalRead(A0) << 0) | 0xFE;
+  Serial.print("  ");
+  printBits(io);
   Serial.print("\n");
 }
 
