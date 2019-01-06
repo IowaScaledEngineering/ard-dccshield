@@ -49,7 +49,7 @@ Most external hardware is going to need access to power and ground.  J5 provides
 
 ### J6 - ISE Standard 6p6c I2C 
 
-This is an [Iowa Scaled Engineering standard I2C 6p6c (RJ11) connector](http://www.iascaled.com/info/ISEI2C6p6cConnector), which can be used to connect to a number of ISE I2C peripheral boards.  It provides a handy modular plug for the I2C bus.
+This is an [Iowa Scaled Engineering standard I2C 6p6c (RJ11) connector](https://www.iascaled.com/store/6P6C-I2C), which can be used to connect to a number of ISE I2C peripheral boards.  It provides a handy modular plug for the I2C bus.
 
 ### J7 - DCC Input
 
@@ -76,13 +76,13 @@ I2C is an open-collector bus, meaning each node can only pull the line low.  The
 
 ### JP2 (Pins 1-2) - I2C /IORST
 
-If you need power on the [Iowa Scaled Engineering standard I2C 6p6c (RJ11) connector](http://www.iascaled.com/info/ISEI2C6p6cConnector), it's typically sent down the /IORST line.  Jumpering pins 1-2 will connect VIO on the Arduino/shield to the /IORST line on the connector (pin 4).  If you don't intend to use I2C or don't need power, leave this jumper open.
+If you need power on the [Iowa Scaled Engineering standard I2C 6p6c (RJ11) connector](https://www.iascaled.com/store/6P6C-I2C), it's typically sent down the /IORST line.  Jumpering pins 1-2 will connect VIO on the Arduino/shield to the /IORST line on the connector (pin 4).  If you don't intend to use I2C or don't need power, leave this jumper open.
 
 Alternately, if you're not using Arduino D7 for your DCC signal (see JP4 configuration below) and want the ability to reset I2C peripherals using this signal, you can tie /IORST to D7 by placing the number between pins 2-3.
 
 ### JP3 - I2C /INT and /OE 
 
-The [Iowa Scaled Engineering standard I2C 6p6c (RJ11) connector](http://www.iascaled.com/info/ISEI2C6p6cConnector) allows for two additional signals: /OE (active low Output Enable) going from the Arduino to the I2C bus; and /INT (active low interrupt), to allow I2C slaves to signal the Arduino they need attention.  Jumper JP3 pins 1-2 to connect /INT to Arduino pin D6 and/or JP3 pins 3-4 to connect /OE to Arduino pin D5.
+The [Iowa Scaled Engineering standard I2C 6p6c (RJ11) connector](https://www.iascaled.com/store/6P6C-I2C) allows for two additional signals: /OE (active low Output Enable) going from the Arduino to the I2C bus; and /INT (active low interrupt), to allow I2C slaves to signal the Arduino they need attention.  Jumper JP3 pins 1-2 to connect /INT to Arduino pin D6 and/or JP3 pins 3-4 to connect /OE to Arduino pin D5.
 
 ### JP4 and JP2 (Pins 3-4) - DCC Signal to Arduino Pin
 
