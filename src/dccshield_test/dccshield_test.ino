@@ -1,184 +1,415 @@
-/*************************************************************************
-Title:    ARD-DCCSHIELD test
-Authors:  Michael Petersen <railfan@drgw.net>
-File:     $Id: $
-License:  GNU General Public License v3
+// Iowa Scaled Engineering
+// This sketch is for our test harness for the ARD-DCCSHIELD v2.0
+// This requires the INA219 library from here:
+//  https://github.com/flav1972/ArduinoINA219
 
-LICENSE:
-    Copyright (C) 2016 Nathan D. Holmes & Michael D. Petersen
 
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 2 of the License, or
-    any later version.
+#define DIN_DCC_SIG_D7      6
+#define DIN_DCC_SIG_D3      5
+#define DIN_DCC_SIG_D2      4
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+#define DOUT_DCC_SIG_ACK    7
+#define DOUT_DCC_POLARITY   3
+#define DOUT_LOAD_RESISTOR  2
 
-*************************************************************************/
+#define DOUT_I2C_SDA        A4
+#define DOUT_I2C_SCL        A5
 
-/*  Test Jig Setup:
- *  12V DC in, connected to the DCC IN terminals.  Red LED across a 30ohm resistor
- *  in series with power.  This LED will light during an ACK pulse.
- *  
- *  RJ11 with 10k resistors from all pins to GND, except IORST.
- */
+#define AIN_DCCSHIELD_PWR   A0
+#define AIN_I2C_SDA         A2
+#define AIN_I2C_SCL         A1
+#define AIN_I2C_PWR         A3
 
-void setup()
-{
-	Serial.begin(115200);
+#include <Wire.h>
+#include <INA219.h>
 
-  pinMode(2, INPUT_PULLUP);  // DCC Input
-  pinMode(3, INPUT_PULLUP);  // DCC Input
-  pinMode(7, INPUT_PULLUP);  // DCC Input
-	pinMode(A1, OUTPUT); // ACK Output
-  digitalWrite(A1, LOW);  // Turn off ACK
 
-  pinMode(4, INPUT_PULLUP);
-  pinMode(8, INPUT_PULLUP);
-  pinMode(9, INPUT_PULLUP);
-  pinMode(10, INPUT_PULLUP);
-  pinMode(11, INPUT_PULLUP);
-  pinMode(12, INPUT_PULLUP);
-  pinMode(13, INPUT_PULLUP);
-  pinMode(A0, INPUT_PULLUP);
-
-  pinMode(A4, INPUT);
-  pinMode(A5, INPUT);
-}
-
-void printBits(byte byteToPrint)
-{
-  byte mask;
-  for(mask = 0x80; mask; mask >>= 1)
-  {
-    if(mask & byteToPrint)
-      Serial.print('1');
-    else
-      Serial.print('0');
-  }
-}
-
-void printDigitalIOs(void)
-{
-  static uint8_t io = 0xFF;
-
-  Serial.print("Digital IOs: ");
-  Serial.print(digitalRead(4));
-  io &= (digitalRead(4) << 7) | 0x7F;
-  Serial.print(digitalRead(8));
-  io &= (digitalRead(8) << 6) | 0xBF;
-  Serial.print(digitalRead(9));
-  io &= (digitalRead(9) << 5) | 0xDF;
-  Serial.print(digitalRead(10));
-  io &= (digitalRead(10) << 4) | 0xEF;
-  Serial.print(digitalRead(11));
-  io &= (digitalRead(11) << 3) | 0xF7;
-  Serial.print(digitalRead(12));
-  io &= (digitalRead(12) << 2) | 0xFB;
-  Serial.print(digitalRead(13));
-  io &= (digitalRead(13) << 1) | 0xFD;
-  Serial.print(digitalRead(A0));
-  io &= (digitalRead(A0) << 0) | 0xFE;
-  Serial.print("  ");
-  printBits(io);
-  Serial.print("\n");
-}
-
-void loop()
-{
-  Serial.print("Connect 12V to DCC IN... Check for D1 on\n");
-  Serial.print("Swap 12V polarity... Check for D1 off\n");
-  while(!Serial.available());
-  while(Serial.available())
-  {
-    Serial.read();  // Flush the buffer
-  }
-
-  Serial.print("Checking for DCC on D2 (install JP4 right)... ");
-  while(digitalRead(2));
-  Serial.print("Done!\n");
-
-  Serial.print("Checking for DCC on D3 (install JP4 left)... ");
-  while(digitalRead(3));
-  Serial.print("Done!\n");
-
-  Serial.print("Checking for DCC on D7 (install JP2 right)... ");
-  while(digitalRead(7));
-  Serial.print("Done!\n");
-
-  Serial.print("\nInstall JP3 (both), JP1 (both), JP2 (right)...\n");
-  while(!Serial.available());
-  while(Serial.available())
-  {
-    Serial.read();  // Flush the buffer
-  }
-  Serial.print("Checking I2C connector not connected...");
-  while(!(digitalRead(5) && digitalRead(6)));
-  Serial.print(" Done!\n");
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(115200);
   
-  Serial.print("\nConnect I2C...\n\n");
-  Serial.print("Checking D5 & D6 low...");
-  while(digitalRead(5) || digitalRead(6));
-  Serial.print(" Done!\n");
+  pinMode(DIN_DCC_SIG_D2, INPUT_PULLUP);
+  pinMode(DIN_DCC_SIG_D3, INPUT_PULLUP);
+  pinMode(DIN_DCC_SIG_D7, INPUT_PULLUP);
+  
+  pinMode(DOUT_LOAD_RESISTOR, OUTPUT);
+  digitalWrite(DOUT_LOAD_RESISTOR, false);
+  pinMode(DOUT_DCC_POLARITY, OUTPUT);
+  digitalWrite(DOUT_DCC_POLARITY, false);
 
-  Serial.print("Checking SDA and SCL...\n");
-  int pass1 = 0, pass2 = 0;
-  while(!pass1 || !pass2)
+  pinMode(DOUT_DCC_SIG_ACK, OUTPUT);
+  digitalWrite(DOUT_DCC_SIG_ACK, false);
+  
+  Serial.print("\n\n");
+
+}
+
+void waitForKey()
+{
+  while(!Serial.available());
+  while(Serial.available())
   {
-    int adc;
-    Serial.print("SDA: ");
-    adc = analogRead(4);
-    Serial.print(adc);
-    if((adc > 400) && (adc < 600))
+    Serial.read();  // Flush the buffer
+  }
+}
+
+void loop() 
+{
+  bool d2, d3, d7, pass;
+  bool allPass = true;
+  char buffer[128];
+  
+  // put your main code here, to run repeatedly:
+  Serial.print(F("\nSet all dip switches ON and \"POWER FROM DCC\"\n"));
+  Serial.print(F("\n** Press any key to start test **\n"));
+  waitForKey();
+
+  // Turn off DCC reversing relay to minimize voltage droop
+  digitalWrite(DOUT_DCC_POLARITY, true);
+  delay(100);  
+
+  {
+    Wire.begin();
+    INA219 v12mon;
+    v12mon.begin();
+    float busV = 0.0;
+
+    do
     {
-      Serial.print(" Pass!\n");
-      pass1 = 1;
-    }
-    else
-    {
-      Serial.print(" *** Fail ***\n");
-      pass1 = 0;
-    }
-    Serial.print("SCL: ");
-    adc = analogRead(5);
-    Serial.print(adc);
-    if((adc > 400) && (adc < 600))
-    {
-      Serial.print(" Pass!\n");
-      pass2 = 1;
-    }
-    else
-    {
-      Serial.print(" *** Fail ***\n");
-      pass2 = 0;
-    }
-    Serial.print("--------------------\n");
-    delay(500);
+      busV = v12mon.busVoltage();
+
+      Serial.print(F("12V Supply:   "));
+      Serial.print(busV, 4);
+      Serial.println(" V");
+      if(busV < 11.5)
+      {
+        Serial.print(F("ERROR: Eanble 12V Supply"));
+        delay(1000);
+      }
+    } while (busV < 11.5);
+    Wire.end();
   }  
 
-  Serial.print("\nInstall JP7 (both)...\n");
-  while(!Serial.available());
-  while(Serial.available())
+  // Supply voltage is on a 1/3 divider
+  float supplyVoltage = 3.0 * analogRead(AIN_DCCSHIELD_PWR) * (5.0 / 1023.0);
+  pass = false;
+  if (supplyVoltage > 4.75 && supplyVoltage < 5.25)
+    pass = true;
+  
+  sprintf(buffer, "Onboard supply voltage (unloaded) %dmV ... %s\n", (int)(supplyVoltage * 1000), pass?"PASS":"!!FAIL!!");
+  Serial.print(buffer);
+
+  if (!pass)
   {
-    Serial.read();  // Flush the buffer
+    Serial.print(F("\nOnboard supply voltage check has failed\nPress any key to restart, will not continue\n"));
+    waitForKey();
+    return;    
   }
 
-  Serial.print("DCC ACK (install JP7 jumpers).  Check blinking LED...\n");
-  while(!Serial.available())
   {
-    digitalWrite(A1, HIGH);
-    printDigitalIOs();
-    delay(500);
-    digitalWrite(A1, LOW);
-    printDigitalIOs();
-    delay(500);
+    Wire.begin();
+    INA219 v12mon;
+    v12mon.begin();
+    float busI = v12mon.shuntCurrent() * 1000.0;
+
+    Serial.print(F("12V Supply Current (unloaded)   "));
+    Serial.print(busI, 4);
+    Serial.print(F(" mA"));
+    Wire.end();
+
+    if (busI < 20.0)
+    {
+      Serial.println(F(" PASS"));
+    } else {
+      Serial.println(F(" FAIL!"));
+      Serial.print(F("\nIdle supply check has failed\nPress any key to restart, will not continue\n"));
+      waitForKey();
+      return;    
+    }
+    
+  }  
+
+  Serial.print("Loading onboard supply\n");
+  digitalWrite(DOUT_LOAD_RESISTOR, true);
+  delay(500);
+  // Supply voltage is on a 1/3 divider
+  supplyVoltage = 3.0 * analogRead(AIN_DCCSHIELD_PWR) * (5.0 / 1023.0);
+  pass = false;
+  if (supplyVoltage > 4.7 && supplyVoltage < 5.3)
+    pass = true;
+
+  {
+    Wire.begin();
+    INA219 v12mon;
+    v12mon.begin();
+    float busI = v12mon.shuntCurrent() * 1000.0;
+
+    Serial.print(F("12V Supply Current (loaded)   "));
+    Serial.print(busI, 4);
+    Serial.print(" mA");
+    Wire.end();
+
+    if (busI > 150.0 && busI < 186.0)
+    {
+      Serial.println(F(" PASS"));
+    } else {
+      Serial.println(F(" FAIL!"));
+      Serial.print(F("\nLoaded supply current check has failed\nPress any key to restart, will not continue\n"));
+      waitForKey();
+      return;    
+    }
+
+  
+  }  
+
+  digitalWrite(DOUT_LOAD_RESISTOR, false);
+  Serial.print("Unloading onboard supply\n");
+  
+  sprintf(buffer, "Onboard supply voltage (loaded) %dmV ... %s\n", (int)(supplyVoltage * 1000), pass?"PASS":"!!FAIL!!");
+  Serial.print(buffer);
+
+  if (!pass)
+  {
+    Serial.print(F("\nOnboard supply voltage check has failed\nPress any key to restart, will not continue\n"));
+    waitForKey();
+    return;    
   }
 
-  Serial.print("Install JP5, disconnect USB, measure 5V output...\n");
-  Serial.print("Bye bye!\n");
-  while(1);
+
+  // Qwiic rail check is a divider between power and ground to test both - should be 3.3V / 2
+  supplyVoltage = 2.0 * analogRead(AIN_I2C_PWR) * (5.0 / 1023.0);
+  pass = false;
+  if (supplyVoltage > 3.1 && supplyVoltage < 3.5)
+    pass = true;
+  
+  sprintf(buffer, "Qwiic supply voltage %dmV ... %s\n", (int)(supplyVoltage * 1000), pass?"PASS":"!!FAIL!!");
+  Serial.print(buffer);
+
+  if (!pass)
+  {
+    Serial.print(F("\nOnboard supply voltage check has failed\nPress any key to restart, will not continue\n"));
+    waitForKey();
+    return;    
+  }
+
+  digitalWrite(DOUT_I2C_SDA, true);
+  digitalWrite(DOUT_I2C_SCL, true);
+  
+  pinMode(DOUT_I2C_SDA,OUTPUT); // setup A4 and A5 as outputs
+  pinMode(DOUT_I2C_SCL,OUTPUT);
+  digitalWrite(DOUT_I2C_SDA, true);
+  digitalWrite(DOUT_I2C_SCL, true);
+
+  sprintf(buffer, "Testing Qwiic data lines\n");
+  Serial.print(buffer);
+
+  delay(100);
+  
+  // Qwiic rail check is a divider between power and ground to test both - should be 3.3V / 2
+  supplyVoltage = analogRead(AIN_I2C_SDA) * (5.0 / 1023.0);
+  pass = false;
+  if (supplyVoltage > 3.1 && supplyVoltage < 3.5)
+    pass = true;
+
+  allPass = allPass && pass;
+  
+  sprintf(buffer, "Qwiic SDA high voltage %dmV ... %s\n", (int)(supplyVoltage * 1000), pass?"PASS":"!!FAIL!!");
+  Serial.print(buffer);
+
+  digitalWrite(DOUT_I2C_SDA, false);
+  delay(100);
+
+  // Qwiic rail check is a divider between power and ground to test both - should be 3.3V / 2
+  supplyVoltage = analogRead(AIN_I2C_SDA) * (5.0 / 1023.0);
+  pass = false;
+  if (supplyVoltage < 0.4)
+    pass = true;
+
+  allPass = allPass && pass;
+  
+  sprintf(buffer, "Qwiic SDA low voltage %dmV ... %s\n", (int)(supplyVoltage * 1000), pass?"PASS":"!!FAIL!!");
+  Serial.print(buffer);
+
+  // Qwiic rail check is a divider between power and ground to test both - should be 3.3V / 2
+  supplyVoltage = analogRead(AIN_I2C_SCL) * (5.0 / 1023.0);
+  pass = false;
+  if (supplyVoltage > 3.1 && supplyVoltage < 3.5)
+    pass = true;
+
+  allPass = allPass && pass;
+  
+  sprintf(buffer, "Qwiic SCL high voltage while SDA low %dmV ... %s\n", (int)(supplyVoltage * 1000), pass?"PASS":"!!FAIL!!");
+  Serial.print(buffer);
+
+
+  digitalWrite(DOUT_I2C_SDA, true);
+  delay(100);
+  
+  // Qwiic rail check is a divider between power and ground to test both - should be 3.3V / 2
+  supplyVoltage = analogRead(AIN_I2C_SCL) * (5.0 / 1023.0);
+  pass = false;
+  if (supplyVoltage > 3.1 && supplyVoltage < 3.5)
+    pass = true;
+
+  allPass = allPass && pass;
+  
+  sprintf(buffer, "Qwiic SCL high voltage %dmV ... %s\n", (int)(supplyVoltage * 1000), pass?"PASS":"!!FAIL!!");
+  Serial.print(buffer);
+
+  digitalWrite(DOUT_I2C_SCL, false);
+  delay(100);
+
+
+  // Qwiic rail check is a divider between power and ground to test both - should be 3.3V / 2
+  supplyVoltage = analogRead(AIN_I2C_SCL) * (5.0 / 1023.0);
+  pass = false;
+  if (supplyVoltage < 0.4)
+    pass = true;
+
+  allPass = allPass && pass;
+  
+  sprintf(buffer, "Qwiic SCL low voltage %dmV ... %s\n", (int)(supplyVoltage * 1000), pass?"PASS":"!!FAIL!!");
+  Serial.print(buffer);
+
+  // Qwiic rail check is a divider between power and ground to test both - should be 3.3V / 2
+  supplyVoltage = analogRead(AIN_I2C_SDA) * (5.0 / 1023.0);
+  pass = false;
+  if (supplyVoltage > 3.1 && supplyVoltage < 3.5)
+    pass = true;
+
+  allPass = allPass && pass;
+  
+  sprintf(buffer, "Qwiic SDA high voltage while SCL low %dmV ... %s\n", (int)(supplyVoltage * 1000), pass?"PASS":"!!FAIL!!");
+  Serial.print(buffer);
+
+
+
+  digitalWrite(DOUT_I2C_SCL, true);
+
+
+  if (!allPass)
+  {
+    Serial.print(F("\nQwiic Level Shifter voltage tests failed\nPress any key to restart, will not continue\n"));
+    waitForKey();
+    return;    
+  }
+
+  pinMode(DOUT_I2C_SDA,INPUT_PULLUP); // setup A4 and A5 as outputs
+  pinMode(DOUT_I2C_SCL,INPUT_PULLUP);
+
+  Serial.print(F("Starting DCC Polarity A test\n"));
+
+  do
+  {
+    digitalWrite(DOUT_DCC_POLARITY, false);
+    delay(100);
+    d2 = digitalRead(DIN_DCC_SIG_D2);
+    d3 = digitalRead(DIN_DCC_SIG_D3);
+    d7 = digitalRead(DIN_DCC_SIG_D7);
+  
+  
+    pass = d2 && d3 && d7;
+    sprintf(buffer, "DCC Signal Inputs HIGH %s  [D2=%s D3=%s D7=%s]\n", (pass)?"PASS":"!!FAIL!!", d2?"HIGH":"LOW", d3?"HIGH":"LOW", d7?"HIGH":"LOW");
+    Serial.print(buffer);
+
+    if (!pass)
+      delay(500);
+    
+  } while (!pass);
+  
+  Serial.print("Check D1 (amber) is ON and press key to continue\n");
+  waitForKey();
+
+  do
+  {  
+    Serial.print("\nStarting DCC Polarity B test\n");
+    digitalWrite(DOUT_DCC_POLARITY, true);
+    delay(100);
+    d2 = digitalRead(DIN_DCC_SIG_D2);
+    d3 = digitalRead(DIN_DCC_SIG_D3);
+    d7 = digitalRead(DIN_DCC_SIG_D7);
+  
+    pass = !d2 && !d3 && !d7;
+  
+    sprintf(buffer, "DCC Signal Inputs LOW %s  [D2=%s D3=%s D7=%s]\n", pass?"PASS":"!!FAIL!!", d2?"HIGH":"LOW", d3?"HIGH":"LOW", d7?"HIGH":"LOW");
+    Serial.print(buffer);
+    if (!pass)
+      delay(500);
+    
+  } while (!pass);
+  
+  sprintf(buffer, "Switch off D7");
+  Serial.print(buffer);
+
+  do {
+     sprintf(buffer, ".");
+     Serial.print(buffer);
+     delay(250);
+    
+  } while(!digitalRead(DIN_DCC_SIG_D7));
+  sprintf(buffer, "PASS!\n");
+  Serial.print(buffer);
+
+  sprintf(buffer, "Switch off D3");
+  Serial.print(buffer);
+
+  do {
+     sprintf(buffer, ".");
+     Serial.print(buffer);
+     delay(250);
+    
+  } while(!digitalRead(DIN_DCC_SIG_D3));
+  sprintf(buffer, "PASS!\n");
+  Serial.print(buffer);
+
+  sprintf(buffer, "Testing that D2 is still switched on");
+  Serial.print(buffer);
+
+  do {
+     sprintf(buffer, ".");
+     Serial.print(buffer);
+     delay(250);
+    
+  } while(digitalRead(DIN_DCC_SIG_D2));
+  sprintf(buffer, "PASS!\n");
+  Serial.print(buffer);
+
+  {
+    Wire.begin();
+    INA219 v12mon;
+    v12mon.begin();
+    float busIstart = v12mon.shuntCurrent() * 1000.0;
+
+
+    Serial.println(F("Testing DCC ACK generator"));
+
+    digitalWrite(DOUT_DCC_SIG_ACK, true);
+    delay(100);
+    float busIend = v12mon.shuntCurrent() * 1000.0;
+    digitalWrite(DOUT_DCC_SIG_ACK, false);
+
+    Serial.print(F("ACK current   "));
+    Serial.print(busIend - busIstart, 4);
+    Serial.print(" mA");
+    
+    Wire.end();
+
+    busIend -= busIstart;
+
+    if (busIend > 60.0 && busIend < 72.0)
+    {
+      Serial.println(F(" PASS"));
+    } else {
+      Serial.println(F(" FAIL!"));
+      Serial.print(F("\nLDCC ACK current check has failed\nPress any key to restart, will not continue\n"));
+      waitForKey();
+      return;    
+    }
+  }
+
+
+
+  Serial.print("******************************************************\n");
+  Serial.print("** TEST COMPLETE - BOARD PASSES                     **\n");
+  Serial.print("******************************************************\n\n\n");
 }
-
